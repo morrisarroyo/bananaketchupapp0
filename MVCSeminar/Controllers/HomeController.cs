@@ -26,5 +26,12 @@ namespace MVCSeminar.Controllers
 
             return View();
         }
+
+        public ActionResult Foo()
+        {
+            ViewBag.Message = "The foo page.";
+
+            return View();
+        }
     }
 }
