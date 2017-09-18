@@ -23,9 +23,21 @@ namespace MVCSeminar.Controllers
             return View(files);
         }
 
-        public ActionResult Content(string file)
+        public ActionResult Content(int id)
         {
-            string text = System.IO.File.ReadAllText(Server.MapPath(@"~/TextFiles/") + file);
+            string[] files = Directory.GetFiles(Server.MapPath("~/TextFiles"));
+            string file;
+            int num = 0;
+            for(int i = 0; i < files.Length; ++i)
+            {
+                file = Path.GetFileName(files[i]);
+                if (file.Contains(id + ""))
+                {
+                    num = i;
+                    break;
+                }
+            }
+            string text = System.IO.File.ReadAllText(files[num]);
             return View("Content", (object)text);
         }
     }    

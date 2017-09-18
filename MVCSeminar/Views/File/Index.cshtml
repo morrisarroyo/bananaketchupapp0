@@ -1,14 +1,17 @@
 ﻿@model string[]
-
+ 
 @{
     ViewBag.Title = "Index";
 }
 
 <ul>
     @{ 
-        foreach(var filename in Model)
+        foreach (var filename in Model)
         {
-            <li>@Html.ActionLink(filename, "Content", new { file = filename})</li>
+            string txtNum = System.Text.RegularExpressions.Regex.Match(filename, @"\d+").Value;
+            int num = Int32.Parse(txtNum);
+            <li>@Html.ActionLink(filename, "Content", new { id = num })</li>
+            /*<li>Html.ActionLink("Modify Villa", "Modify", "Villa", new { id = "1" }, null)</li>*/
         }
     }
 </ul>
