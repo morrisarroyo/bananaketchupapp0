@@ -8,9 +8,7 @@
     @{ 
         foreach (var filename in Model)
         {
-            string txtNum = System.Text.RegularExpressions.Regex.Match(filename, @"\d+").Value;
-            int num = Int32.Parse(txtNum);
-            <li>@Html.ActionLink(filename, "Content", new { id = num })</li>
+            <li>@Html.ActionLink(filename, "Content", new { id = filename })</li>
             /*<li>Html.ActionLink("Modify Villa", "Modify", "Villa", new { id = "1" }, null)</li>*/
         }
     }
