@@ -18,26 +18,24 @@ namespace MVCSeminar.Controllers
             //Console.WriteLine(files[0].)           
             for(int i = 0; i < files.Length; ++i)
             {
-                files[i] = Path.GetFileName(files[i]);
+                files[i] = Path.GetFileNameWithoutExtension(files[i]);
             }
             return View(files);
         }
 
-        public ActionResult Content(int id)
+        public ActionResult Content(string id)
         {
             string[] files = Directory.GetFiles(Server.MapPath("~/TextFiles"));
-            string file;
-            int num = 0;
+            string file = "";
             for(int i = 0; i < files.Length; ++i)
             {
                 file = Path.GetFileName(files[i]);
-                if (file.Contains(id + ""))
+                if (file.Contains(id))
                 {
-                    num = i;
                     break;
                 }
             }
-            string text = System.IO.File.ReadAllText(files[num]);
+            string text = System.IO.File.ReadAllText(Server.MapPath("~/TextFiles") + "/" + file);
             return View("Content", (object)text);
         }
     }    
